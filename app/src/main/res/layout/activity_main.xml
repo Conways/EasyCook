@@ -34,15 +34,15 @@
 
             <ImageView
                 android:id="@+id/menu_select_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@mipmap/ic_launcher"/>
 
             <TextView
                 android:id="@+id/menu_select_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="选择"
+                android:text="选餐"
                 android:textColor="@color/mainGray"
                 android:textSize="@dimen/content_text"/>
 
@@ -59,8 +59,8 @@
 
             <ImageView
                 android:id="@+id/menu_setting_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@mipmap/ic_launcher"/>
 
             <TextView

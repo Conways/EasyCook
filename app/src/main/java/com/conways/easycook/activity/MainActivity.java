@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private SelectFragment selectFragment;
     private SettingFragment settingFragment;
 
-    private int currentMenu = SELECT_MENU;
+    private int currentMenu = -1;
 
 
     @Override
@@ -77,13 +77,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
 
     private void setMenu(int id) {
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        if (id == currentMenu) {
+            return;
+        }
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         resetAll(fragmentTransaction);
         currentMenu = id;
         switch (id) {
             case SELECT_MENU:
                 tvSlectText.setTextColor(getColorById(R.color.mainColor));
-                ivSlectIcon.setImageResource(R.mipmap.ic_launcher);
+                ivSlectIcon.setImageResource(R.drawable.menu_select_checked);
                 if (selectFragment == null) {
                     selectFragment = SelectFragment.newInstance("11", "22");
                     fragmentTransaction.add(R.id.fragment_hold, selectFragment, SELECT_TAG);
@@ -93,7 +96,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case SETTING_MENU:
                 tvSettingText.setTextColor(getColorById(R.color.mainColor));
-                ivSettingIcon.setImageResource(R.mipmap.ic_launcher);
+                ivSettingIcon.setImageResource(R.drawable.menu_setting_checked);
                 if (settingFragment == null) {
                     settingFragment = SettingFragment.newInstance("33", "44");
                     fragmentTransaction.add(R.id.fragment_hold, settingFragment, SETTING_TAG);
@@ -110,12 +113,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
 
-    private void resetAll( FragmentTransaction fragmentTransaction) {
+    private void resetAll(FragmentTransaction fragmentTransaction) {
         tvSlectText.setTextColor(getColorById(R.color.mainGray));
         tvSettingText.setTextColor(getColorById(R.color.mainGray));
 
-        ivSlectIcon.setImageResource(R.mipmap.ic_launcher);
-        ivSettingIcon.setImageResource(R.mipmap.ic_launcher);
+        ivSlectIcon.setImageResource(R.drawable.menu_select_normal);
+        ivSettingIcon.setImageResource(R.drawable.menu_setting_normal);
 
 
         if (selectFragment != null) {
@@ -133,6 +136,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         outState.putInt(CURRENT_MENU, currentMenu);
         super.onSaveInstanceState(outState);
     }
+
 
     @Override
     public void onClick(View v) {
