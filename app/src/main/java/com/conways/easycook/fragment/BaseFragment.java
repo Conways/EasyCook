@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class BaseFragment extends Fragment {
     private Toast toast;
     private ProgressDialog progressDialog;
+    protected String TAG="zzzz"+getClass().getSimpleName();
 
 
     /**
