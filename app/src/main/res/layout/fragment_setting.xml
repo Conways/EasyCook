@@ -43,8 +43,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|left"
                     android:layout_marginLeft="48dp"
-                    android:text="describe"
+                    android:text="@string/menu_setting_rockable"
                     android:textColor="@color/black"/>
+
+                <CheckBox
+                    android:id="@+id/rockable_switcher"
+                    android:layout_width="48dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="16dp"
+                    android:button="@null"
+                    android:background="@drawable/switch_bt"
+                    android:checked="true"
+                    />
+
+
             </FrameLayout>
 
             <FrameLayout
@@ -91,7 +104,6 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
 
 
     <android.support.v7.widget.CardView
