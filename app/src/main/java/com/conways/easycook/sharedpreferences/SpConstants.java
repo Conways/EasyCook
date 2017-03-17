@@ -15,4 +15,14 @@ package com.conways.easycook.sharedpreferences;
 public class SpConstants {
     public static final String SP_NAME = "easyCookSpName";
     public static final String ROCKABLE = "rockable";
+    public static final String LANGUAGE = "language";
+    public static final String SKIN = "skin";
+
+
+    public static class Langue {
+        public static final String LANGUAGE_SIMPLE_CHINESE = "language_simple_chinese";
+        public static final String LANGUAGE_TRADITIONAL_CHINESE = "language_traditional_chinese";
+        public static final String LANGUAGE_JAPANESE = "language_japanese";
+        public static final String LANGUAGE_ENGLISH = "language_english";
+    }
 }

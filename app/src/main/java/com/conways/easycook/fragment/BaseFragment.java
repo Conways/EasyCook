@@ -3,19 +3,36 @@ package com.conways.easycook.fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.conways.easycook.R;
 
 /**
  * Created by Conways on 2017/3/14.
  */
 
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
     private Toast toast;
     private ProgressDialog progressDialog;
-    protected String TAG="zzzz"+getClass().getSimpleName();
+    protected String TAG = "zzzz" + getClass().getSimpleName();
 
+    private Snackbar snackbar;
+
+    protected abstract void initTitle();
+
+    protected abstract void initContent();
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initTitle();
+        initContent();
+    }
 
     /**
      * findview简写
@@ -78,25 +95,62 @@ public class BaseFragment extends Fragment {
     }
 
     /**
-     * Toast提示
+     * 消息提示，提示后会消失
      *
      * @param msg 提示消息
      */
-    protected void showMsg(String msg) {
-        if (null == toast) {
-            toast = Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT);
+    protected void showShortMsg(CharSequence msg) {
+        if (null == snackbar) {
+            snackbar = Snackbar.make(getView(), "", 1);
+            snackbar.getView().setBackgroundColor(getActivity().getResources().getColor(R.color.bgGray));
+            ((TextView) snackbar.getView().findViewById(R.id.snackbar_text)).setTextColor
+                    (getActivity().getResources().getColor(R.color.black));
+
         }
-        toast.setText(msg);
-        toast.show();
+        snackbar.setText(msg);
+        snackbar.setDuration(Snackbar.LENGTH_SHORT);
+        snackbar.show();
     }
 
     /**
-     * Toast提示
+     * 消息提示，提示后会消失
      *
-     * @param textId 提示消息StringId
+     * @param msgId 提示消息Id
      */
-    protected void showMsg(int textId) {
-        showMsg(getText(textId).toString());
+    protected void showShortMsg(int msgId) {
+        showShortMsg(getText(msgId));
+    }
+
+
+    /**
+     * 静态消息提示，提示后不消失
+     *
+     * @param msg      提示消息
+     * @param action   行为名字
+     * @param listener 行为监听器
+     */
+    protected void showStaticMsg(CharSequence msg, CharSequence action, View.OnClickListener listener) {
+        if (null == snackbar) {
+            snackbar = Snackbar.make(getView(), "", 1);
+            snackbar.getView().setBackgroundColor(getActivity().getResources().getColor(R.color.bgGray));
+            ((TextView) snackbar.getView().findViewById(R.id.snackbar_text)).setTextColor
+                    (getActivity().getResources().getColor(R.color.mainGray));
+        }
+        snackbar.setText(msg);
+        snackbar.setAction(action, listener);
+        snackbar.setDuration(Snackbar.LENGTH_INDEFINITE);
+        snackbar.show();
+    }
+
+    /**
+     * 静态消息提示，提示后不消失
+     *
+     * @param textId   提示消息字符串ID
+     * @param actionId 行为名称字符串ID
+     * @param listener 行为监听器
+     */
+    protected void showStaticMsg(int textId, int actionId, View.OnClickListener listener) {
+        showStaticMsg(getText(textId).toString(), getString(actionId), listener);
     }
 
     /**
@@ -121,6 +175,6 @@ public class BaseFragment extends Fragment {
      * @param textId
      */
     protected void showProgress(int textId) {
-        showMsg(getText(textId).toString());
+        showProgress(getText(textId).toString());
     }
 }

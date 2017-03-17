@@ -16,6 +16,10 @@ import android.content.SharedPreferences;
 
 public class Config {
 
-    public static boolean rockable = true;
+    public static boolean rockable;
+
+    public static String langue;
+
+    public static String skin;
 
 }

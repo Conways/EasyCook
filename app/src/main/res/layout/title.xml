@@ -23,7 +23,7 @@
             android:layout_height="40dp"
             android:padding="8dp"
             android:src="@drawable/menu_setting_normal"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/title_back_text"
@@ -42,6 +42,7 @@
         android:layout_gravity="center"
         android:text="Title"
         android:textColor="@color/white"
+        android:visibility="gone"
         android:textSize="@dimen/title_text"/>
 
     <LinearLayout
@@ -59,6 +60,7 @@
             android:layout_height="wrap_content"
             android:text="Action"
             android:textColor="@color/white"
+            android:visibility="gone"
             android:textSize="@dimen/subtitle_text"/>
 
         <ImageView

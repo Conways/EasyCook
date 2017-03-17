@@ -28,5 +28,6 @@ public class EasyCookApplication extends Application {
 
     private void initConfig() {
         Config.rockable = SpManager.getInstance().getRockable();
+        Config.langue = SpManager.getInstance().getLanguage();
     }
 }

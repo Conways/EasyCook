@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.conways.easycook.R;
 import com.conways.easycook.config.Config;
@@ -22,7 +23,8 @@ import com.conways.easycook.sharedpreferences.SpManager;
  * Use the {@link SettingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SettingFragment extends BaseFragment implements CompoundButton.OnCheckedChangeListener {
+public class SettingFragment extends BaseFragment implements CompoundButton
+        .OnCheckedChangeListener,View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -31,9 +33,8 @@ public class SettingFragment extends BaseFragment implements CompoundButton.OnCh
 
     private OnSettingFragmentInteractionListener mListener;
 
-
+    private TextView tvTitle;
     private CheckBox cbRockAble;
-    private boolean isFirstCheck = true;
 
     public SettingFragment() {
     }
@@ -62,13 +63,17 @@ public class SettingFragment extends BaseFragment implements CompoundButton.OnCh
         return inflater.inflate(R.layout.fragment_setting, container, false);
     }
 
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
+    protected void initTitle() {
+        tvTitle=$(R.id.title_title);
+        tvTitle.setVisibility(View.VISIBLE);
+        tvTitle.setText(getText(R.string.menu_setting));
+        tvTitle.setOnClickListener(this);
     }
 
-    private void initView() {
+    @Override
+    protected void initContent() {
         cbRockAble = $(R.id.rockable_switcher);
         cbRockAble.setOnCheckedChangeListener(this);
         cbRockAble.setChecked(Config.rockable);
@@ -99,13 +104,17 @@ public class SettingFragment extends BaseFragment implements CompoundButton.OnCh
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isFirstCheck) {
-            isFirstCheck = false;
+        if (isChecked==Config.rockable){
             return;
         }
         Config.rockable = isChecked;
         SpManager.getInstance().setRockable(isChecked);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        showShortMsg("这里是提示消息");
     }
 
     /**

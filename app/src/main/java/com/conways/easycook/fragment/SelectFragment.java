@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.conways.easycook.R;
 import com.conways.easycook.config.Config;
@@ -28,6 +29,8 @@ public class SelectFragment extends BaseFragment {
 
     private SensorManager sensorManager;
     private Vibrator vibrator;
+
+    private TextView tvTitle;
 
     public SelectFragment() {
     }
@@ -57,15 +60,18 @@ public class SelectFragment extends BaseFragment {
         return view;
     }
 
-    private void initView() {
+    @Override
+    protected void initTitle() {
+        tvTitle=$(R.id.title_title);
+        tvTitle.setVisibility(View.VISIBLE);
+        tvTitle.setText(getText(R.string.menu_select));
     }
+
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
-    }
+    protected void initContent() {
 
+    }
 
     @Override
     public void onResume() {
@@ -112,11 +118,12 @@ public class SelectFragment extends BaseFragment {
             float z = values[2];
             int medumValue = 19;
             if (Math.abs(x) > medumValue || Math.abs(y) > medumValue || Math.abs(z) > medumValue) {
-                if (Config.rockable){
+                if (Config.rockable) {
                     vibrator.vibrate(200);
                 }
             }
         }
+
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }

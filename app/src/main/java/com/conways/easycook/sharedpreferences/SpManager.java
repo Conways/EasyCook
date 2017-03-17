@@ -48,7 +48,21 @@ public class SpManager {
     public boolean getRockable() {
         check();
         SharedPreferences sp = context.getSharedPreferences(SpConstants.SP_NAME, Context.MODE_PRIVATE);
-        return sp.getBoolean(SpConstants.SP_NAME, true);
+        return sp.getBoolean(SpConstants.ROCKABLE, true);
+    }
+
+
+    public void setLangague(String langague) {
+        check();
+        SharedPreferences sp = context.getSharedPreferences(SpConstants.SP_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(SpConstants.LANGUAGE, langague);
+        editor.commit();
+    }
+    public String getLanguage() {
+        check();
+        SharedPreferences sp = context.getSharedPreferences(SpConstants.SP_NAME, Context.MODE_PRIVATE);
+        return sp.getString(SpConstants.LANGUAGE, SpConstants.Langue.LANGUAGE_SIMPLE_CHINESE);
     }
 
     private void check() {
