@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright (c) 2017. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<resources>
+    <string name="app_name">EasyCook</string>
+
+
+    <string name="save">保存</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_select">選餐</string>
+    <string name="menu_setting">設置</string>
+    <string name="menu_setting_rockable">搖一搖</string>
+    <string name="menu_setting_languague">語言</string>
+    <string name="menu_setting_skin">皮膚</string>
+
+
+    <string name="language_simplified_chinese">简体中文</string>
+    <string name="language_traditional_chinese">繁體中文</string>
+    <string name="language_english">English</string>
+    <string name="language_japanese">日本语</string>
+
+
+    <string-array name="languages">
+        <item>@string/language_simplified_chinese</item>
+        <item>@string/language_traditional_chinese</item>
+        <item>@string/language_english</item>
+        <item>@string/language_japanese</item>
+    </string-array>
+    <string name="language_select">語言選擇</string>
+</resources>

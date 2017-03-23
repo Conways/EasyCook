@@ -21,7 +21,6 @@ public abstract class BaseFragment extends Fragment {
     private ProgressDialog progressDialog;
     protected String TAG = "zzzz" + getClass().getSimpleName();
 
-    private Snackbar snackbar;
 
     protected abstract void initTitle();
 
@@ -95,62 +94,26 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
-     * 消息提示，提示后会消失
+     * 消息提示
      *
      * @param msg 提示消息
      */
     protected void showShortMsg(CharSequence msg) {
-        if (null == snackbar) {
-            snackbar = Snackbar.make(getView(), "", 1);
-            snackbar.getView().setBackgroundColor(getActivity().getResources().getColor(R.color.bgGray));
-            ((TextView) snackbar.getView().findViewById(R.id.snackbar_text)).setTextColor
-                    (getActivity().getResources().getColor(R.color.black));
-
+        if (null == toast) {
+            toast = Toast.makeText(getActivity(), "msg", Toast.LENGTH_SHORT);
+        }else{
+            toast.setText(msg);
         }
-        snackbar.setText(msg);
-        snackbar.setDuration(Snackbar.LENGTH_SHORT);
-        snackbar.show();
+        toast.show();
     }
 
     /**
-     * 消息提示，提示后会消失
+     * 消息提示
      *
      * @param msgId 提示消息Id
      */
     protected void showShortMsg(int msgId) {
         showShortMsg(getText(msgId));
-    }
-
-
-    /**
-     * 静态消息提示，提示后不消失
-     *
-     * @param msg      提示消息
-     * @param action   行为名字
-     * @param listener 行为监听器
-     */
-    protected void showStaticMsg(CharSequence msg, CharSequence action, View.OnClickListener listener) {
-        if (null == snackbar) {
-            snackbar = Snackbar.make(getView(), "", 1);
-            snackbar.getView().setBackgroundColor(getActivity().getResources().getColor(R.color.bgGray));
-            ((TextView) snackbar.getView().findViewById(R.id.snackbar_text)).setTextColor
-                    (getActivity().getResources().getColor(R.color.mainGray));
-        }
-        snackbar.setText(msg);
-        snackbar.setAction(action, listener);
-        snackbar.setDuration(Snackbar.LENGTH_INDEFINITE);
-        snackbar.show();
-    }
-
-    /**
-     * 静态消息提示，提示后不消失
-     *
-     * @param textId   提示消息字符串ID
-     * @param actionId 行为名称字符串ID
-     * @param listener 行为监听器
-     */
-    protected void showStaticMsg(int textId, int actionId, View.OnClickListener listener) {
-        showStaticMsg(getText(textId).toString(), getString(actionId), listener);
     }
 
     /**

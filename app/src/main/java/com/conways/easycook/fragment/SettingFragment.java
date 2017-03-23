@@ -1,6 +1,8 @@
 package com.conways.easycook.fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.conways.easycook.R;
+import com.conways.easycook.activity.LanguagueSelectActivity;
 import com.conways.easycook.config.Config;
+import com.conways.easycook.sharedpreferences.SpConstants;
 import com.conways.easycook.sharedpreferences.SpManager;
 
 /**
@@ -24,7 +29,12 @@ import com.conways.easycook.sharedpreferences.SpManager;
  * create an instance of this fragment.
  */
 public class SettingFragment extends BaseFragment implements CompoundButton
-        .OnCheckedChangeListener,View.OnClickListener {
+        .OnCheckedChangeListener, View.OnClickListener {
+
+    public static final int LANGUAGUE_SET_REQUEST_CODE = 0x1000;
+    public static final int LANGUAGUE_SET_RESULT_CODE = 0x1001;
+
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -35,6 +45,10 @@ public class SettingFragment extends BaseFragment implements CompoundButton
 
     private TextView tvTitle;
     private CheckBox cbRockAble;
+
+    private FrameLayout flSkin;
+    private FrameLayout flLanguagueItem;
+    private TextView tvLanguague;
 
     public SettingFragment() {
     }
@@ -66,10 +80,11 @@ public class SettingFragment extends BaseFragment implements CompoundButton
 
     @Override
     protected void initTitle() {
-        tvTitle=$(R.id.title_title);
+        tvTitle = $(R.id.title_title);
         tvTitle.setVisibility(View.VISIBLE);
         tvTitle.setText(getText(R.string.menu_setting));
         tvTitle.setOnClickListener(this);
+
     }
 
     @Override
@@ -77,6 +92,47 @@ public class SettingFragment extends BaseFragment implements CompoundButton
         cbRockAble = $(R.id.rockable_switcher);
         cbRockAble.setOnCheckedChangeListener(this);
         cbRockAble.setChecked(Config.rockable);
+        flSkin = $(R.id.skin_item);
+        flSkin.setOnClickListener(this);
+        flLanguagueItem = $(R.id.languague_item);
+        flLanguagueItem.setOnClickListener(this);
+        tvLanguague = $(R.id.languague);
+        updateLanguage();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == getActivity().RESULT_CANCELED) {
+            return;
+        }
+
+        if (requestCode == LANGUAGUE_SET_REQUEST_CODE) {
+            updateLanguage();
+        }
+    }
+
+    private void updateLanguage() {
+        String languageTag = SpManager.getInstance().getLanguage();
+        switch (languageTag) {
+            case SpConstants.Langue.LANGUAGE_SIMPLE_CHINESE:
+                tvLanguague.setText(getText(R.string.language_simplified_chinese));
+                break;
+            case SpConstants.Langue.LANGUAGE_TRADITIONAL_CHINESE:
+                tvLanguague.setText(getText(R.string.language_traditional_chinese));
+                break;
+            case SpConstants.Langue.LANGUAGE_ENGLISH:
+                tvLanguague.setText(getText(R.string.language_english));
+                break;
+            case SpConstants.Langue.LANGUAGE_JAPANESE:
+                tvLanguague.setText(getText(R.string.language_japanese));
+                break;
+            default:
+                break;
+
+
+        }
     }
 
     public void onButtonPressed(Uri uri) {
@@ -104,29 +160,27 @@ public class SettingFragment extends BaseFragment implements CompoundButton
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isChecked==Config.rockable){
+        if (isChecked == Config.rockable) {
             return;
         }
         Config.rockable = isChecked;
         SpManager.getInstance().setRockable(isChecked);
-
     }
 
     @Override
     public void onClick(View v) {
-        showShortMsg("这里是提示消息");
+        switch (v.getId()) {
+            case R.id.languague_item:
+                toTargetActivityForReasult(LanguagueSelectActivity.class, LANGUAGUE_SET_REQUEST_CODE);
+                break;
+
+            default:
+                break;
+
+
+        }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnSettingFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

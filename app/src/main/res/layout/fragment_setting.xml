@@ -99,6 +99,7 @@
             android:showDividers="middle">
 
             <FrameLayout
+                android:id="@+id/languague_item"
                 android:layout_width="match_parent"
                 android:layout_height="48dp">
 
@@ -116,9 +117,19 @@
                     android:layout_marginLeft="48dp"
                     android:text="@string/menu_setting_languague"
                     android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/languague"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/menu_setting_languague"
+                    android:textColor="@color/mainGray"/>
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/skin_item"
                 android:layout_width="match_parent"
                 android:layout_height="48dp">
 

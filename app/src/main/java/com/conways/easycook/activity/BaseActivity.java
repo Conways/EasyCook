@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -15,6 +18,13 @@ import android.widget.Toast;
  */
 
 public class BaseActivity extends AppCompatActivity {
+    protected LinearLayout llBack;
+    protected LinearLayout llAction;
+    protected ImageView ivBack;
+    protected TextView tvBack;
+    protected TextView tvTitle;
+    protected TextView tvAction;
+    protected ImageView ivAction;
 
     private Toast toast;
     private ProgressDialog progressDialog;

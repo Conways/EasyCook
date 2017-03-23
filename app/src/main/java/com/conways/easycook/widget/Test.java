@@ -6,20 +6,11 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package com.conways.easycook.config;
-
-import com.conways.easycook.R;
+package com.conways.easycook.widget;
 
 /**
- * Created by Conways on 2017/3/16.
+ * Created by Conways on 2017/3/20.
  */
 
-public class Config {
-
-    public static boolean rockable;
-
-    public static String skin;
-
-
-
+public class Test {
 }

@@ -1,0 +1,41 @@
+<!--
+  ~ Copyright (c) 2017. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/mainColor</item>
+        <item name="colorPrimaryDark">@color/mainColorDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <style name="SplashActivityTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/splash_bg_v</item>
+    </style>
+
+    <style name="CardViewItemTheme" parent="@style/CardView.Light">
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">0dp</item>
+    </style>
+
+    <style name="CardViewTitleTheme" parent="@style/CardView.Light">
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardBackgroundColor">@color/mainColor</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">0dp</item>
+    </style>
+
+</resources>
