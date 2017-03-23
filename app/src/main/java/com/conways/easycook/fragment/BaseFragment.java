@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.conways.easycook.R;
+import com.conways.easycook.widget.progressdialog.EcNormalPgDialog;
 
 /**
  * Created by Conways on 2017/3/14.
@@ -18,7 +19,6 @@ import com.conways.easycook.R;
 
 public abstract class BaseFragment extends Fragment {
     private Toast toast;
-    private ProgressDialog progressDialog;
     protected String TAG = "zzzz" + getClass().getSimpleName();
 
 
@@ -101,7 +101,7 @@ public abstract class BaseFragment extends Fragment {
     protected void showShortMsg(CharSequence msg) {
         if (null == toast) {
             toast = Toast.makeText(getActivity(), "msg", Toast.LENGTH_SHORT);
-        }else{
+        } else {
             toast.setText(msg);
         }
         toast.show();
@@ -122,14 +122,8 @@ public abstract class BaseFragment extends Fragment {
      * @param msg 对话框提示信息
      */
     protected void showProgress(String msg) {
-        if (null == progressDialog) {
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage(msg);
-            progressDialog.setCancelable(true);
-        }
-        if (!progressDialog.isShowing()) {
-            progressDialog.show();
-        }
+        EcNormalPgDialog progressDialog = EcNormalPgDialog.newInstance(msg);
+        progressDialog.show(getActivity().getFragmentManager(), "tag");
     }
 
     /**

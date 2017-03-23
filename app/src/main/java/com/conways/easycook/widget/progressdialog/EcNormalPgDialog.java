@@ -12,36 +12,63 @@ package com.conways.easycook.widget.progressdialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.conways.easycook.R;
 
 public class EcNormalPgDialog extends DialogFragment {
 
+    private static final String MSG_KEY = "msg";
+    private String msg;
 
+    public void setMsg(String msg) {
+        this.msg = msg;
+        tvMsg.setText(this.msg);
+    }
 
     public EcNormalPgDialog() {
     }
 
-    public static EcNormalPgDialog newInstance() {
+    private TextView tvMsg;
+
+    public static EcNormalPgDialog newInstance(String msg) {
         EcNormalPgDialog fragment = new EcNormalPgDialog();
+        Bundle bundle = new Bundle();
+        bundle.putString(MSG_KEY, msg);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        msg = getArguments().getString(MSG_KEY);
+        setStyle(STYLE_NO_TITLE,R.style.ProgressDialog);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+        View view = inflater.inflate(R.layout.dialog_normal_progress, container, false);
+        return view;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        tvMsg = (TextView) getView().findViewById(R.id.dialog_normal_progress_msg);
+        tvMsg.setText(msg);
+    }
 }

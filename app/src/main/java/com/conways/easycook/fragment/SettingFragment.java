@@ -172,6 +172,10 @@ public class SettingFragment extends BaseFragment implements CompoundButton
         switch (v.getId()) {
             case R.id.languague_item:
                 toTargetActivityForReasult(LanguagueSelectActivity.class, LANGUAGUE_SET_REQUEST_CODE);
+//                showProgress("请求中..");
+                break;
+            case R.id.skin_item:
+                showProgress("请求中..");
                 break;
 
             default:
