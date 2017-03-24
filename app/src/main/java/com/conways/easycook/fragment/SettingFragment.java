@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.conways.easycook.R;
+import com.conways.easycook.activity.CookDetailActivity;
 import com.conways.easycook.activity.LanguagueSelectActivity;
 import com.conways.easycook.config.Config;
 import com.conways.easycook.sharedpreferences.SpConstants;
@@ -175,7 +176,8 @@ public class SettingFragment extends BaseFragment implements CompoundButton
 //                showProgress("请求中..");
                 break;
             case R.id.skin_item:
-                showProgress("请求中..");
+//                showProgress("请求中..");
+                toTargetActivity(CookDetailActivity.class);
                 break;
 
             default:

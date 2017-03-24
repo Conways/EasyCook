@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".activity.LanguagueSelectActivity">
         </activity>
+        <activity android:name=".activity.CookDetailActivity">
+        </activity>
     </application>
 
 </manifest>
