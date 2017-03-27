@@ -22,21 +22,15 @@ import com.conways.easycook.R;
 public class CTransformer implements ViewPager.PageTransformer {
     @Override
     public void transformPage(View page, float position) {
-        Log.d("zzzzz", "transformPage: "+position);
-        ImageView imageView=(ImageView)page.findViewById(R.id.item_line_iv);
-        if (position>=0){
-            //右侧
-            if (position==0&&position==1){
-                imageView.setTranslationX(0);
-                return;
-            }
-            imageView.setTranslationX(-position*200);
-        }else {
-            if (Math.abs(position)==0&&Math.abs(position)==1){
-                imageView.setTranslationX(0);
-                return;
-            }
-            imageView.setTranslationX(Math.abs(position)*200);
+        Log.d("zzzzz", "transformPage: " + position);
+        ImageView imageView = (ImageView) page.findViewById(R.id.item_line_iv);
+        if (position % 1 == 0f) {
+            imageView.setTranslationX(0);
+            return;
+        }
+
+        if (Math.abs(position) < 1) {
+            imageView.setTranslationX(-position * 400);
         }
     }
 }

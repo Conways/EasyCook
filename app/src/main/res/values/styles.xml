@@ -23,6 +23,9 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_bg_v</item>
     </style>
+    <style name="CookDetailActivityTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
     <style name="CardViewItemTheme" parent="@style/CardView.Light">
         <item name="cardCornerRadius">0dp</item>
@@ -30,6 +33,7 @@
         <item name="cardElevation">2dp</item>
         <item name="contentPadding">0dp</item>
     </style>
+
 
     <style name="CardViewTitleTheme" parent="@style/CardView.Light">
         <item name="cardCornerRadius">0dp</item>

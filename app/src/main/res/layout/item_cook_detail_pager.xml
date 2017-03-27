@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/mainColor">
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor">
 
     <ImageView
         android:id="@+id/item_line_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/ic_launcher"
-        />
+        android:src="@mipmap/ic_launcher"/>
 
     <View
         android:id="@+id/item_line_left"
-        android:layout_width="2dp"
+        android:layout_width="1px"
         android:layout_height="match_parent"
         android:layout_gravity="left"
         android:background="@color/black"/>
 
     <View
         android:id="@+id/item_line_right"
-        android:layout_width="2dp"
+        android:layout_width="1px"
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:background="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </FrameLayout>

@@ -9,13 +9,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.conways.easycook.Adapter.CookTypeAdapter;
 import com.conways.easycook.R;
 import com.conways.easycook.config.Config;
+import com.conways.easycook.entity.CookType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelectFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
@@ -29,8 +37,10 @@ public class SelectFragment extends BaseFragment {
 
     private SensorManager sensorManager;
     private Vibrator vibrator;
-
     private TextView tvTitle;
+    private RecyclerView rvType;
+    private CookTypeAdapter cookTypeAdapter;
+    private List<CookType> list;
 
     public SelectFragment() {
     }
@@ -70,7 +80,16 @@ public class SelectFragment extends BaseFragment {
 
     @Override
     protected void initContent() {
-
+        rvType=$(R.id.rv);
+        rvType.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        list=new ArrayList<>();
+        for (int i = 0; i <8 ; i++) {
+            CookType cookType=new CookType();
+            cookType.setName(i+" 种类");
+            list.add(cookType);
+        }
+        cookTypeAdapter=new CookTypeAdapter(list,getActivity());
+        rvType.setAdapter(cookTypeAdapter);
     }
 
     @Override

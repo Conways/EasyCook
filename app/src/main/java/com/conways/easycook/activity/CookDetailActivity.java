@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.conways.easycook.Adapter.CookDetailPageAdapter;
 import com.conways.easycook.R;
 import com.conways.easycook.common.CTransformer;
+import com.conways.easycook.entity.CookDetail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class CookDetailActivity extends BaseActivity {
 
     private ViewPager viewPager;
     private CookDetailPageAdapter pageAdapter;
-    private List<View> list;
+    private List<CookDetail> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +32,22 @@ public class CookDetailActivity extends BaseActivity {
 
     private void init() {
         initData();
-        viewPager=$(R.id.cook_detali_vp);
-        pageAdapter=new CookDetailPageAdapter(list);
+        viewPager = $(R.id.cook_detali_vp);
+        pageAdapter = new CookDetailPageAdapter(list,this);
         viewPager.setAdapter(pageAdapter);
-        viewPager.setPageTransformer(true,new CTransformer());
+        viewPager.setPageTransformer(true, new CTransformer());
     }
 
-    private void initData(){
-        list=new ArrayList<>();
-        for (int i = 0; i <5 ; i++) {
-            View view= LayoutInflater.from(this).inflate(R.layout.item_cook_detail_pager,null);
-            list.add(view);
+
+
+    private void initData() {
+        list = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+            CookDetail detail = new CookDetail();
+            detail.setDescribe("test");
+            detail.setPrice(0.2f);
+            detail.setName(i + "商品");
+            list.add(detail);
         }
     }
 }

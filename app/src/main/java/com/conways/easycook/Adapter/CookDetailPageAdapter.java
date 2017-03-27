@@ -8,10 +8,17 @@
 
 package com.conways.easycook.Adapter;
 
+import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.conways.easycook.R;
+import com.conways.easycook.entity.CookDetail;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,11 +26,15 @@ import java.util.List;
  */
 
 public class CookDetailPageAdapter extends PagerAdapter {
+    private static int[] ivs = {R.drawable.pizz, R.drawable.nudle, R.drawable.hum};
+    private List<CookDetail> list;
+    private Context context;
+    private List<View> viewList;
 
-    private List<View> list;
-
-    public CookDetailPageAdapter(List<View> list) {
+    public CookDetailPageAdapter(List<CookDetail> list, Context context) {
         this.list = list;
+        this.context = context;
+        viewList = new ArrayList<>();
     }
 
     @Override
@@ -37,14 +48,34 @@ public class CookDetailPageAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        container.addView(list.get(position));
-        return list.get(position);
+    public View instantiateItem(ViewGroup container, int position) {
+        View convertView = null;
+        Hold hold = null;
+        if (viewList.size() <= 0) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_cook_detail_pager,
+                    null,false);
+            hold = new Hold();
+            hold.imageView = (ImageView) convertView.findViewById(R.id.item_line_iv);
+            convertView.setTag(hold);
+        } else {
+            convertView = viewList.get(0);
+            viewList.clear();
+            hold = (Hold) convertView.getTag();
+        }
+        hold.imageView.setImageResource(ivs[position % 3]);
+        container.addView(convertView);
+        return convertView;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView(list.get(position));
+        viewList.clear();
+        viewList.add((View) object);
+        container.removeView((View) object);
+    }
+
+    class Hold {
+        ImageView imageView;
     }
 
 }
