@@ -11,9 +11,11 @@ package com.conways.easycook.Adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.conways.easycook.R;
+import com.conways.easycook.common.OnItemClickLisenter;
 import com.conways.easycook.entity.CookType;
 import com.conways.easycook.hold.CookTypeHolder;
 
@@ -27,10 +29,15 @@ public class CookTypeAdapter extends RecyclerView.Adapter<CookTypeHolder> {
 
     private List<CookType> list;
     private Context context;
+    private OnItemClickLisenter onItemClickLisenter;
 
     public CookTypeAdapter(List<CookType> list, Context context) {
         this.list = list;
         this.context = context;
+    }
+
+    public void setOnItemClickLisenter(OnItemClickLisenter onItemClickLisenter) {
+        this.onItemClickLisenter = onItemClickLisenter;
     }
 
     @Override
@@ -40,9 +47,18 @@ public class CookTypeAdapter extends RecyclerView.Adapter<CookTypeHolder> {
     }
 
     @Override
-    public void onBindViewHolder(CookTypeHolder holder, int position) {
+    public void onBindViewHolder(CookTypeHolder holder, final int position) {
         holder.tvName.setText(list.get(position).getName());
-        holder.ivType.setImageResource(R.drawable.pizz);
+        holder.ivType.setImageResource(CookDetailPageAdapter.ivs[position % 3]);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickLisenter == null) {
+                    return;
+                }
+                onItemClickLisenter.itemClick(position, CookTypeAdapter.this);
+            }
+        });
     }
 
     @Override

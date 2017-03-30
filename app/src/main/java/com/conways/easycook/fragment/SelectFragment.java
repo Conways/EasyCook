@@ -19,13 +19,15 @@ import android.widget.TextView;
 
 import com.conways.easycook.Adapter.CookTypeAdapter;
 import com.conways.easycook.R;
+import com.conways.easycook.activity.CookDetailActivity;
+import com.conways.easycook.common.OnItemClickLisenter;
 import com.conways.easycook.config.Config;
 import com.conways.easycook.entity.CookType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectFragment extends BaseFragment {
+public class SelectFragment extends BaseFragment implements OnItemClickLisenter{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -83,12 +85,13 @@ public class SelectFragment extends BaseFragment {
         rvType=$(R.id.rv);
         rvType.setLayoutManager(new GridLayoutManager(getActivity(),2));
         list=new ArrayList<>();
-        for (int i = 0; i <8 ; i++) {
+        for (int i = 0; i <6 ; i++) {
             CookType cookType=new CookType();
             cookType.setName(i+" 种类");
             list.add(cookType);
         }
         cookTypeAdapter=new CookTypeAdapter(list,getActivity());
+        cookTypeAdapter.setOnItemClickLisenter(this);
         rvType.setAdapter(cookTypeAdapter);
     }
 
@@ -170,6 +173,11 @@ public class SelectFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void itemClick(int position, RecyclerView.Adapter adapter) {
+        toTargetActivity(CookDetailActivity.class);
     }
 
     public interface OnSettingFragmentInteractionListener {

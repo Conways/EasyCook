@@ -9,8 +9,12 @@
 package com.conways.easycook.mvp.presenter;
 
 /**
- * Created by Conways on 2017/3/14.
+ * Created by Conways on 2017/3/30.
  */
 
-public class MainPresenter {
+public interface CookDetailPresenter {
+
+    public void getCookDetail();
+
+
 }
