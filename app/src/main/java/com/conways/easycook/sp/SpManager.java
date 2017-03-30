@@ -6,7 +6,7 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package com.conways.easycook.sharedpreferences;
+package com.conways.easycook.sp;
 
 import android.content.Context;
 import android.content.SharedPreferences;

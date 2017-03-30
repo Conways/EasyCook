@@ -6,8 +6,8 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
 import com.conways.easycook.config.Config;
-import com.conways.easycook.sharedpreferences.SpConstants;
-import com.conways.easycook.sharedpreferences.SpManager;
+import com.conways.easycook.sp.SpConstants;
+import com.conways.easycook.sp.SpManager;
 
 import java.util.Locale;
 

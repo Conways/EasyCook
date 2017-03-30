@@ -10,8 +10,8 @@ import android.view.View;
 import com.conways.easycook.Adapter.LanguageSlectAdapter;
 import com.conways.easycook.R;
 import com.conways.easycook.fragment.SettingFragment;
-import com.conways.easycook.sharedpreferences.SpConstants;
-import com.conways.easycook.sharedpreferences.SpManager;
+import com.conways.easycook.sp.SpConstants;
+import com.conways.easycook.sp.SpManager;
 
 public class LanguagueSelectActivity extends BaseActivity implements View.OnClickListener {
     private RecyclerView rvLanguagueList;

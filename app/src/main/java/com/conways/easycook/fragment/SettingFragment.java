@@ -2,10 +2,8 @@ package com.conways.easycook.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,8 @@ import com.conways.easycook.R;
 import com.conways.easycook.activity.CookDetailActivity;
 import com.conways.easycook.activity.LanguagueSelectActivity;
 import com.conways.easycook.config.Config;
-import com.conways.easycook.sharedpreferences.SpConstants;
-import com.conways.easycook.sharedpreferences.SpManager;
+import com.conways.easycook.sp.SpConstants;
+import com.conways.easycook.sp.SpManager;
 
 /**
  * A simple {@link BaseFragment} subclass.
