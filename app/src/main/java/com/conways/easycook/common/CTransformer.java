@@ -22,7 +22,6 @@ import com.conways.easycook.R;
 public class CTransformer implements ViewPager.PageTransformer {
     @Override
     public void transformPage(View page, float position) {
-        Log.d("zzzzz", "transformPage: " + position);
         ImageView imageView = (ImageView) page.findViewById(R.id.item_line_iv);
         if (position % 1 == 0f) {
             imageView.setTranslationX(0);
